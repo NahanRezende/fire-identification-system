@@ -1,42 +1,41 @@
 import { Sensor } from '@modules/sensor/infra/typeorm/entities/Sensor';
-import { CreateSensorService } from '@modules/sensor/services/CreateSensorService';
+import { User } from '@modules/user/infra/typeorm/entities/User';
+import { CreateUserService } from '@modules/user/services/CreateUserService';
 import { app } from '@shared/infra/http/app';
 import request from 'supertest';
 
-jest.mock('@modules/sensor/services/CreateSensorService');
-const createSensorService = CreateSensorService as jest.MockedClass<
-  typeof CreateSensorService
+jest.mock('@modules/user/services/CreateUserService');
+const createUserService = CreateUserService as jest.MockedClass<
+  typeof CreateUserService
 >;
 
-describe('Create sensor controller test', () => {
+describe('Create user controller test', () => {
   beforeEach(() => {
-    createSensorService.mockClear();
+    createUserService.mockClear();
   });
 
-  it('Should be able to create a sensor', async () => {
-    const sensor = new Sensor();
+  it('Should be able to create a user', async () => {
+    const user = new User();
 
-    await createSensorService.prototype.execute.mockResolvedValueOnce(
-      sensor,
+    await createUserService.prototype.execute.mockResolvedValueOnce(
+      user,
     );
 
     const response = await request(app)
-      .post(`/sensor/`)
+      .post(`/user/`)
       .send({
-        name: 'Test1',
-        temperature: 'Test1',
-        description: 'Test1',
-        user_id: 'Test1',
+        name: 'Teste1',
+        password: 'Teste1',
+        email: 'Teste1',
       });
 
-    expect(response.body).toEqual(sensor);
+    expect(response.body).toEqual(user);
     expect(response.statusCode).toEqual(200);
-    expect(createSensorService.prototype.execute).toHaveBeenCalledWith(
+    expect(createUserService.prototype.execute).toHaveBeenCalledWith(
       {
-        name: 'Test1',
-        temperature: 'Test1',
-        description: 'Test1',
-        user_id: 'Test1',
+        name: 'Teste1',
+        password: 'Teste1',
+        email: 'Teste1',
       }
     );
   });

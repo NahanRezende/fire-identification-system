@@ -33,8 +33,7 @@ export default {
   collectCoverageFrom: [
     '<rootDir>/src/modules/**/**/infra/http/controllers/**/*.ts',
     '<rootDir>/src/modules/**/**/services/**/*.ts',
-    '<rootDir>/src/modules/**/**/providers/**/implementations/*.ts',
-    '<rootDir>/src/modules/**/**/infra/**/repositories/*.ts',
+    '<rootDir>/src/modules/**/infra/typeorm/repositories/*.ts',
     '<rootDir>/src/shared/providers/**/implementations/*.ts',
   ],
 

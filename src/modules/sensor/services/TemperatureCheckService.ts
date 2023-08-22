@@ -29,7 +29,7 @@ export class TemperatureCheckService {
       return `Unable to find sensors for this user id: ${user_id}`;
     }
 
-    const sensor = sensors.find(sensor => sensor.id = sensor_id);
+    const sensor = sensors.find(sensor => sensor.id === sensor_id);
 
     if(!sensor){
       return `Unable to find a sensor for this sensor id: ${sensor_id}`;
@@ -42,7 +42,7 @@ export class TemperatureCheckService {
 
       await this.mailProvider.sendMail(user.email, sensor);
 
-      return `Sensor: ${sensor.name} - Foi identificado um possivel foco de incêndio, temperatura aferida: ${sensor.temperature}°C`
+      return `Sensor: ${sensor.name} - Foi identificado um possivel foco de incêndio, temperatura aferida: ${sensor.temperature}°C`;
     }
 
     sensor.temperature = temperature;

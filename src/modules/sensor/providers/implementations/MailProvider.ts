@@ -39,12 +39,6 @@ export class MailProvider implements IMailProvider {
     const transporter = nodemailer.createTransport(transportOptions);
 
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return error;
-      } else {
-          return "E-mail enviado com sucesso!";
-      }
-    });
+    transporter.sendMail(mailOptions);
   }
 }
